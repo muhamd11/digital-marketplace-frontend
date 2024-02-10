@@ -14,7 +14,7 @@ const CheckOut = () => {
   const options = {
     mode: "payment",
     currency: "usd",
-    amount: router.query.amount || 1,
+    amount: (router.query.amount || 1),
   };
 
   return (
