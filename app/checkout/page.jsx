@@ -1,16 +1,14 @@
-"use client"
 import React from 'react';
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from './_components/CheckoutForm';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/router'; // Use from 'next/router' instead of 'next/navigation'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
-
-
 const CheckOut = () => {
-  const searchParams = useSearchParams()
+  const router = useRouter(); // Use useRouter to access the search parameters
+  const searchParams = new URLSearchParams(router.asPath);
   const options = {
     mode: 'payment',
     currency: 'usd',
@@ -18,8 +16,8 @@ const CheckOut = () => {
   };
 
   return (
-      <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
+      <Elements stripe={stripePromise}>
+        <CheckoutForm options={options} /> {/* Pass options as props to CheckoutForm */}
       </Elements>
   );
 };
