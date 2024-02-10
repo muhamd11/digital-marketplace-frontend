@@ -7,15 +7,16 @@ import { useSearchParams } from 'next/navigation'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
-const searchParams = useSearchParams()
+
 
 const CheckOut = () => {
   
+  const searchParams = useSearchParams()
 
   const options = {
     mode: 'payment',
     currency: 'usd',
-    amount: Number(searchParams.get('amount'))
+    amount: Number(searchParams.get('amount')) || 1
   };
 
   return (
