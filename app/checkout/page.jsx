@@ -10,17 +10,16 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 const CheckOut = () => {
   const router = useRouter(); // Use useRouter to access the search parameters
-  
+
   const options = {
     mode: "payment",
     currency: "usd",
-    amount: Number(router.query.amount) || 1;,
+    amount: Number(router.query.amount) || 1,
   };
 
   return (
     <Elements stripe={stripePromise}>
       <CheckoutForm options={options} />{" "}
-      {/* Pass options as props to CheckoutForm */}
     </Elements>
   );
 };
