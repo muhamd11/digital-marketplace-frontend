@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 const CheckOut = () => {
-  const router = useRouter(); // Use useRouter to access the search parameters
+  const router = useRouter(); 
 
   const options = {
     mode: "payment",
@@ -19,7 +19,7 @@ const CheckOut = () => {
 
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm options={options} />{" "}
+      <CheckoutForm options={options} />
     </Elements>
   );
 };
