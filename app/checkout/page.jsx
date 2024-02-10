@@ -10,11 +10,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 const CheckOut = () => {
   const router = useRouter(); // Use useRouter to access the search parameters
-  const amount = Number(router.query.amount) || 1;
+  
   const options = {
     mode: "payment",
     currency: "usd",
-    amount,
+    amount: Number(router.query.amount) || 1;,
   };
 
   return (
