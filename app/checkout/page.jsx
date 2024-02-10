@@ -9,17 +9,18 @@ import { useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 const CheckOut = () => {
-  const router = useRouter(); 
-
+  const router = useRouter(); // Use useRouter to access the search parameters
+  const searchParams = new URLSearchParams(router.asPath);
   const options = {
     mode: "payment",
     currency: "usd",
-    amount: (router.query.amount || 1),
+    amount: (Number(searchParams.get("amount")) || 1),
   };
 
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm options={options} />
+      <CheckoutForm options={options} />{" "}
+      {/* Pass options as props to CheckoutForm */}
     </Elements>
   );
 };
